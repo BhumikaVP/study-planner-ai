@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart AI Study Planner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="ph ph-brain"></i>
+                <h2>Study AI</h2>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active"><i class="ph ph-squares-four"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="ph ph-calendar-check"></i> Schedule</a>
+                <a href="#" class="nav-item"><i class="ph ph-chart-line-up"></i> Progress</a>
+            </nav>
+            <div class="integrations">
+                <p class="section-title">Integrations</p>
+                <button id="btn-sync-cal" class="btn-icon"><i class="ph ph-google-logo"></i> Sync Calendar</button>
+                <button id="btn-notify" class="btn-icon"><i class="ph ph-bell-ringing"></i> Notifications</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div>
+                    <h1 class="page-title">Welcome back, Student! 👋</h1>
+                    <p class="subtitle">Here is your AI-optimized study plan for today.</p>
+                </div>
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Student&background=random" alt="User Profile"
+                        class="avatar">
+                </div>
+            </header>
+
+            <div class="dashboard-grid">
+                <!-- Left Column: Inputs & Stats -->
+                <div class="left-col">
+                    <!-- Form Card -->
+                    <div class="card form-card">
+                        <h3><i class="ph ph-plus-circle"></i> Add Subject</h3>
+                        <form id="add-subject-form">
+                            <div class="input-group">
+                                <label for="subject">Subject Name</label>
+                                <input type="text" id="subject" placeholder="e.g. Data Structures" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="exam-date">Exam Date</label>
+                                <input type="date" id="exam-date" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Add to Plan</button>
+                        </form>
+                    </div>
+
+                    <!-- Settings Card -->
+                    <div class="card settings-card">
+                        <h3><i class="ph ph-clock"></i> Daily Availability</h3>
+                        <form id="settings-form">
+                            <div class="input-group">
+                                <label for="daily-hours">Available Study Hours / Day</label>
+                                <input type="number" id="daily-hours" min="1" max="16" value="4" required>
+                            </div>
+                            <button type="submit" class="btn-secondary">Update</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column: Schedule & Tasks -->
+                <div class="right-col">
+                    <!-- Stats Overview -->
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <i class="ph ph-books"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-subjects">0</span>
+                                <span class="stat-label">Active Subjects</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="ph ph-hourglass-high"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-hours">0h</span>
+                                <span class="stat-label">Planned Today</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="ph ph-check-circle"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-progress">0%</span>
+                                <span class="stat-label">Daily Progress</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="card progress-card">
+                        <div class="progress-header">
+                            <h3>Daily Progress</h3>
+                        </div>
+                        <div class="progress-stats" style="margin-bottom: 1rem;">
+                            <span class="progress-percent-large" id="progress-percent-large">0%</span>
+                            <span class="progress-text" id="progress-text">0/0 hours</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-fill" id="progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Schedule List -->
+                    <div class="card schedule-card">
+                        <div class="schedule-header">
+                            <h3><i class="ph ph-magic-wand"></i> AI Recommended Tasks</h3>
+                            <span class="date-badge" id="current-date">Today</span>
+                        </div>
+                        <div class="task-list" id="task-list">
+                            <!-- Tasks will be rendered here via JS -->
+                            <div class="empty-state">
+                                <i class="ph ph-list-dashes"></i>
+                                <p>Add subjects and set your availability to generate your plan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js?v=1.0.1" defer></script>
+</body>
+
+</html>
